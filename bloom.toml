@@ -1,0 +1,30 @@
+# A shell task executes commands on a group
+[[shell]]
+name = "hi"
+commands = ["touch hi", "ls"]
+
+[[shell]]
+name = "bye"
+commands =["touch bye", "ls"]
+
+# A script task can execute a local script on a group
+[[script]]
+name = "foo"
+path = "foo.sh"
+executable = "/bin/sh"
+
+# A shell task can reference other tasks by @name
+[[shell]]
+name = "greet"
+commands = ["@hi", "touch beep", "@foo", "@bye"]
+
+# A group is a named set of remote machines
+[[group]]
+name = "test"
+hosts = ["192.168.0.7"]
+user = "justin"
+
+[[group]]
+name = "fake"
+hosts = ["host1", "host2"]
+user = "user"
